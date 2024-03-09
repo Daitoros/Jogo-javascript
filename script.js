@@ -26,6 +26,9 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth"); //Changed name because of ive already declared a variable named monsterHealth up above
 const locations = [{ //An object IN an array
     name: "town square" //key/pairs. name of the property and it values
+    "button text": ["Ir para loja", "Ir para caverna", "Enfrentar dragão"] // Property of an empty array. Doble quoted because it has two words for the property name.
+
+
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
@@ -39,9 +42,9 @@ function update(location) {
 }
 
 function goTown() {
-  button1.innerText = "Comprar 10 de vida (10 ouros)" // It will changes the innerText of the button
-  button2.innerText = "Comprar arma (30 ouro)";
-  button3.innerText = "Ir para o Centro da Cidade";
+  button1.innerText = "Ir para loja" // It will changes the innerText of the button
+  button2.innerText = "Ir para caverna";
+  button3.innerText = "Enfrentar dragão";
 
   // Updating buttons functions
   button1.onclick = goStore;
