@@ -24,11 +24,30 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth"); //Changed name because of ive already declared a variable named monsterHealth up above
+const weapons = [
+  { name: 'stick', power: 5 },
+  { name: 'dagger', power: 30 },
+  { name: 'claw hammer', power: 50 },
+  { name: 'sword', power: 100 }
+];
 const locations = [{ //An object IN an array
-    name: "town square" //key/pairs. name of the property and it values
+    name: "centro da cidade" //key/pairs. name of the property and it values
     "button text": ["Ir para loja", "Ir para caverna", "Enfrentar dragão"] // Property of an empty array. Doble quoted because it has two words for the property name.
+    "button functions": [goStore, goCave, fightDragon],
+    text: "Você está no centro da cidade. Você vê uma placa que diz \"Loja\"."
 
-
+},
+{
+  name: "loja",
+  "button text": ["Comprar 10 de vida (10 ouros)", "Comprar arma (30 ouros)", "Ir para o centro da cidade"],
+  "button functions": [buyHealth, buyWeapon, goTown],
+  text: "Você entra na loja."
+},
+{
+  name: "cave",
+    "button text": ["Enfrentar Slime", "Enfrentar dentes de sabre", "Ir para o centro da cidade"],
+    "button functions": [fightSlime, fightBeast, goTown],
+    text: "Você entra na caverna. Você vê alguns monstros."
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
@@ -38,46 +57,59 @@ const locations = [{ //An object IN an array
     button3.onclick = fightDragon;
 
 function update(location) {
+  button1.innerText = location["button text"][0];
+  button2.innerText = location["button text"][1];
+  button3.innerText = location["button text"][2];
+  /*button1.innerText = "Ir para loja" // It will changes the innerText of the button
+  button1.innerText = location["button text"][0]; // it will get the first index location of the "button text" array inside location
+  button2.innerText = "Ir para caverna";
+  button3.innerText = "Enfrentar dragão";*/
 
+  /* Updating buttons functions
+  button1.onclick = goStore;
+  button2.onclick = goCave;
+  button3.onclick = fightDragon;*/
+  button1.onclick = location["button functions"][0];
+  button2.onclick = location["button functions"][1];
+  button3.onclick = location["button functions"][2];
+
+  //uptadint the main text
+  // text.innerText = "Você está no centro da cidade. Você vê uma placa que diz \"Loja\"."
+  text.innerText = location.text;
 }
 
 function goTown() {
-  button1.innerText = "Ir para loja" // It will changes the innerText of the button
-  button2.innerText = "Ir para caverna";
-  button3.innerText = "Enfrentar dragão";
-
-  // Updating buttons functions
-  button1.onclick = goStore;
-  button2.onclick = goCave;
-  button3.onclick = fightDragon;
-
-  //uptadint the main text
-  text.innerText = "Você está no centro da cidade. Você vê uma placa que diz \"Loja\"."
+  update(locations[0]); //passing only the object of index 0 (called bracket notation)
+}
 }
 // Declarando funções
 function goStore() {
-  button1.innerText = "Comprar 10 de vida (10 ouros)" // It will changes the innerText of the button
-  button2.innerText = "Comprar arma (30 ouro)";
-  button3.innerText = "Ir para o Centro da Cidade";
-
-  // Updating buttons functions
-  button1.onclick = buyHealth;
-  button2.onclick = buyWeapon;
-  button3.onclick = goTown;
-
-  //uptadint the main text
-  text.innerText = "Você entra na loja."
+  update(locations[1]);
 }
 
   function goCave() {
-    console.log("Indo para a caverna.");
+    //console.log("Indo para a caverna.");
+    update(locations[2]);
   }
   function fightDragon() {
     console.log("Lutando com dragão.");
   }
   function buyHealth() {
-
+    if (gold>=10){ //First if declaration
+    gold -= 10;
+    health += 10;
+    goldText.innerText = gold;  //Updating the values
+    healthText.innerText = health;
+  } else{
+    text.innerText = "Você não tem ouro o suficiente para comprar vida."
+  }
   }
   function buyWeapon() {
   
+  }
+  function fightSlime() {
+
+  }
+  function fightBeast() {
+    
   }
