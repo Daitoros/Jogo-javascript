@@ -105,16 +105,39 @@ function goStore() {
   }
   }
   function buyWeapon() {
-    if (gold >= 30) {
-      gold -= 30; //compound assignment
-      currentWeapon ++; //increment operator
-      let newWeapon = weapons[currentWeapon].name; // Making the player knows what weapons he has
-      goldText.innerText = gold;  //changing innerText
-      text.innerText = "Você agora têm um(a) " + newWeapon + ".";
-      inventory.push(newWeapon); // moves variable newWeapon to the end of the array.
-      text.innerText += " In your inventory you have: " + inventory; //show at the end of the innerText
+    if(currentWeapon< weapons.length - 1){ //array indexes starts at 0
+      if (gold >= 30) {
+        gold -= 30; //compound assignment
+        currentWeapon ++; //increment operator
+        let newWeapon = weapons[currentWeapon].name; // Making the player knows what weapons he has
+        goldText.innerText = gold;  //changing innerText
+        text.innerText = "Você agora têm um(a) " + newWeapon + ".";
+        inventory.push(newWeapon); // moves variable newWeapon to the end of the array.
+        text.innerText += " In your inventory you have: " + inventory; //show at the end of the innerText
+      } else{
+        text.innerText = "Você não têm ouro o suficiente para comprar a arma.";
+      }
+    }
+    else{
+      text.innerText = "Você já têm a arma mais forte!";
+      button2.innerText = "Vender arma por 15 ouros";
+      button2.onclick = sellWeapon;
     }
   }
+
+  function sellWeapon() {
+    if(inventory.length > 1){
+      gold += 15;
+      goldText.innerText = gold;
+      //let currentWeapon; // block scope. the variable only has this value inside this block code.
+      let currentWeapon = inventory.shift(); // gives this variable the first value of the array
+      text.innerText = "You sold a " + currentWeapon + ".";
+      text.innerText += " In your inventory you have: " + inventory;
+    } else {
+      text.innerText = "Don't sell your only weapon!";
+    }
+  }
+
   function fightSlime() {
 
   }
