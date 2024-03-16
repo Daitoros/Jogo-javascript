@@ -30,6 +30,11 @@ const weapons = [
   { name: 'martelo dentado', power: 50 },
   { name: 'espada', power: 100 }
 ];
+const monsters = [
+  {name: "slime", level: 2, health: 15},
+  {name: "besta com presas", level: 8, health: 60},
+  {name: "dragão", level: 20, health: 300}
+]
 const locations = [{ //An object IN an array
     name: "centro da cidade" //key/pairs. name of the property and it values
     "button text": ["Ir para loja", "Ir para caverna", "Enfrentar dragão"] // Property of an empty array. Doble quoted because it has two words for the property name.
@@ -45,7 +50,7 @@ const locations = [{ //An object IN an array
 },
 {
   name: "cave",
-    "button text": ["Enfrentar Slime", "Enfrentar dentes de sabre", "Ir para o centro da cidade"],
+    "button text": ["Enfrentar Slime", "Enfrentar Besta com Presas", "Ir para o centro da cidade"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "Você entra na caverna. Você vê alguns monstros."
 }]; 
@@ -91,9 +96,7 @@ function goStore() {
     //console.log("Indo para a caverna.");
     update(locations[2]);
   }
-  function fightDragon() {
-    console.log("Lutando com dragão.");
-  }
+
   function buyHealth() {
     if (gold>=10){ //First if declaration
     gold -= 10;
@@ -139,8 +142,27 @@ function goStore() {
   }
 
   function fightSlime() {
-
+    fighting = 0;
+    goFight();  //Calling a function on javascript
   }
   function fightBeast() {
-    
+    fighting = 1;
+    goFight();
+  }
+  
+  function fightDragon() {
+    fighting = 2;
+    goFight();
+  }
+  
+  function goFight() {
+
+  }
+  
+  function attack() {
+  
+  }
+  
+  function dodge() {
+  
   }
