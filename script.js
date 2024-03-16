@@ -25,10 +25,10 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth"); //Changed name because of ive already declared a variable named monsterHealth up above
 const weapons = [
-  { name: 'stick', power: 5 },
-  { name: 'dagger', power: 30 },
-  { name: 'claw hammer', power: 50 },
-  { name: 'sword', power: 100 }
+  { name: 'graveto', power: 5 },
+  { name: 'adaga', power: 30 },
+  { name: 'martelo dentado', power: 50 },
+  { name: 'espada', power: 100 }
 ];
 const locations = [{ //An object IN an array
     name: "centro da cidade" //key/pairs. name of the property and it values
@@ -105,7 +105,15 @@ function goStore() {
   }
   }
   function buyWeapon() {
-  
+    if (gold >= 30) {
+      gold -= 30; //compound assignment
+      currentWeapon ++; //increment operator
+      let newWeapon = weapons[currentWeapon].name; // Making the player knows what weapons he has
+      goldText.innerText = gold;  //changing innerText
+      text.innerText = "Você agora têm um(a) " + newWeapon + ".";
+      inventory.push(newWeapon); // moves variable newWeapon to the end of the array.
+      text.innerText += " In your inventory you have: " + inventory; //show at the end of the innerText
+    }
   }
   function fightSlime() {
 
