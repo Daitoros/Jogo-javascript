@@ -49,10 +49,16 @@ const locations = [{ //An object IN an array
   text: "Você entra na loja."
 },
 {
-  name: "cave",
+  name: "caverna",
     "button text": ["Enfrentar Slime", "Enfrentar Besta com Presas", "Ir para o centro da cidade"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "Você entra na caverna. Você vê alguns monstros."
+},
+{
+  name: "fight",
+  "button text": ["Atacar", "Desviar", "Correr"],
+  "button functions": [attack, dodge, goTown],
+  text: "Você está luntando contra um monstro."
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
