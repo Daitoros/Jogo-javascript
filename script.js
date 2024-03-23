@@ -55,10 +55,22 @@ const locations = [{ //An object IN an array
     text: "Você entra na caverna. Você vê alguns monstros."
 },
 {
-  name: "fight",
+  name: "lutar",
   "button text": ["Atacar", "Desviar", "Correr"],
   "button functions": [attack, dodge, goTown],
   text: "Você está luntando contra um monstro."
+},
+{
+  name: "matar monstro",
+  "button text": ["Ir para o centro da cidade", "Ir para o centro da cidade", "Ir para o centro da cidade"],
+  "button functions": [goTown, goTown, goTown],
+  text: 'O monstro grita "Arg!" enquanto morre.Você ganha pontos de experiência e encontra ouro.' // That's how you put double quotes on a dialogue
+},
+{
+  name: "perder",
+    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button functions": [restart, restart, restart],
+    text: "You die. &#x2620;"
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
@@ -68,6 +80,7 @@ const locations = [{ //An object IN an array
     button3.onclick = fightDragon;
 
 function update(location) {
+  monsterStats.style.display = "none"; //this will hide the monster status after its defeated
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -179,6 +192,11 @@ function goStore() {
       lose();
     } else if (monsterHealth <= 0) {
       defeatMonster();
+      if(fighting === 2){
+        winGame();
+      } else {
+        defeatMonster();
+      }
     }
   }
   
@@ -195,5 +213,17 @@ function goStore() {
   }
   
   function lose(){
-    
+    update(locations[5]);
+  }
+
+  function restart() {
+    xp = 0;
+    health = 100;
+    gold = 50;
+    currentWeapon = 0;
+    inventory = ["stick"];
+    goldText.innerText = gold;
+    healthText.innerText = health;
+    xpText.innerText = xp;
+    goTown();
   }
