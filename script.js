@@ -71,6 +71,12 @@ const locations = [{ //An object IN an array
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
     text: "You die. &#x2620;"
+},
+{
+  name: "ganhar",
+  "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+  "button functions": [restart, restart, restart],
+  text: "Você derrotou o dragão! VOCÊ GANHOU O JOGO! &#x1F389;"
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
@@ -99,7 +105,8 @@ function update(location) {
 
   //uptadint the main text
   // text.innerText = "Você está no centro da cidade. Você vê uma placa que diz \"Loja\"."
-  text.innerText = location.text;
+  //text.innerText = location.text;
+  text.innerHTML = location.text; //Adaptando para poder usar emoticon
 }
 
 function goTown() {
@@ -226,4 +233,8 @@ function goStore() {
     healthText.innerText = health;
     xpText.innerText = xp;
     goTown();
+  }
+
+  function winGame(){
+    update(locations[6]);
   }
