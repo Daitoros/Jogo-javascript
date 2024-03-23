@@ -191,7 +191,13 @@ function goStore() {
   function attack() {
     text.innerText = "The "+ monsters[fighting].name +" attacks."; //concatenation operator
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
-    health -= monsters[fighting].level;
+    //health -= monsters[fighting].level;
+    health -= getMonsterAttackValue(monsters[fighting].level);
+    if(isMonsterHit()){
+      monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; 
+    } else{
+      text.innerText += " You miss.";
+    }
     monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; // Math.floor makes a number goes down to the nearest integer. Math.random generates a random number from 0 to 1
     healthText.innerText =  health;
     monsterHealthText.innerText = monsterHealth;
@@ -205,8 +211,21 @@ function goStore() {
         defeatMonster();
       }
     }
+    if(Math.random() <= .1){
+      text.innerText += " Your " + inventory.pop() + " breaks."; //making the possibility of your weapon to break
+    }
   }
+
+  function getMonsterAttackValue(level){
+    const hit = (level * 5) - (Math.floor(Math.random() * xp)); //This will set the monster's attack to five times their level minus a random number between 0 and the player's xp.
+    console.log(hit); //debbugging
+    return hit > 0 ? hit : 0; //Ternary operator
+  }                                       
   
+  function isMonsterHit() {
+    return Math.random() > .2 || health < 20;
+  }
+
   function dodge() {
     text.innerText = "Você desvia do ataque de " + monsters[fighting].name;
   }
