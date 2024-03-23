@@ -92,7 +92,6 @@ function update(location) {
 function goTown() {
   update(locations[0]); //passing only the object of index 0 (called bracket notation)
 }
-}
 // Declarando funções
 function goStore() {
   update(locations[1]);
@@ -162,13 +161,39 @@ function goStore() {
   }
   
   function goFight() {
-
+    update(locations[3]); //This calls the object fight, inside the function locations
+    monsterHealth = monsters[fighting].health;  //This will make the monster health appear
+    monsterStats.style.display = 'block'; //This will make the monster status appear when you click to fight it
+    monsterName.innerText = monsters[fighting].name;  //Giving the monster a name
+    monsterHealthText.innerText = monsterHealth;  //Giving it a health
   }
   
   function attack() {
-  
+    text.innerText = "The "+ monsters[fighting].name +" attacks."; //concatenation operator
+    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    health -= monsters[fighting].level;
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; // Math.floor makes a number goes down to the nearest integer. Math.random generates a random number from 0 to 1
+    healthText.innerText =  health;
+    monsterHealthText.innerText = monsterHealth;
+    if(health<=0){
+      lose();
+    } else if (monsterHealth <= 0) {
+      defeatMonster();
+    }
   }
   
   function dodge() {
+    text.innerText = "Você desvia do ataque de " + monsters[fighting].name;
+  }
+
+  function defeatMonster() {
+    gold += Math.floor(monsters[fighting].level * 6.7);
+    xp += monsters[fighting].level;
+    goldText.innerText = gold;
+    xpText.innerText = xp;
+    update(locations[4]);
+  }
   
+  function lose(){
+    
   }
