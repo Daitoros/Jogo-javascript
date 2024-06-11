@@ -141,7 +141,7 @@ function goStore() {
         goldText.innerText = gold;  //changing innerText
         text.innerText = "Você agora têm um(a) " + newWeapon + ".";
         inventory.push(newWeapon); // moves variable newWeapon to the end of the array.
-        text.innerText += " In your inventory you have: " + inventory; //show at the end of the innerText
+        text.innerText += " No seu inventário, você tem: " + inventory; //show at the end of the innerText
       } else{
         text.innerText = "Você não têm ouro o suficiente para comprar a arma.";
       }
@@ -159,10 +159,10 @@ function goStore() {
       goldText.innerText = gold;
       //let currentWeapon; // block scope. the variable only has this value inside this block code.
       let currentWeapon = inventory.shift(); // gives this variable the first value of the array
-      text.innerText = "You sold a " + currentWeapon + ".";
-      text.innerText += " In your inventory you have: " + inventory;
+      text.innerText = "você vendeu " + currentWeapon + ".";
+      text.innerText += " No seu inventário tem: " + inventory;
     } else {
-      text.innerText = "Don't sell your only weapon!";
+      text.innerText = "Não venda sua única arma!";
     }
   }
 
@@ -189,14 +189,14 @@ function goStore() {
   }
   
   function attack() {
-    text.innerText = "The "+ monsters[fighting].name +" attacks."; //concatenation operator
-    text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+    text.innerText = "O(a) "+ monsters[fighting].name +" ataca."; //concatenation operator
+    text.innerText += " Você ataca com seu/sua " + weapons[currentWeapon].name + ".";
     //health -= monsters[fighting].level;
     health -= getMonsterAttackValue(monsters[fighting].level);
     if(isMonsterHit()){
       monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; 
     } else{
-      text.innerText += " You miss.";
+      text.innerText += " Você erra.";
     }
     monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1; // Math.floor makes a number goes down to the nearest integer. Math.random generates a random number from 0 to 1
     healthText.innerText =  health;
@@ -212,7 +212,7 @@ function goStore() {
       }
     }
     if(Math.random() <= .1 && inventory.length !== 1){
-      text.innerText += " Your " + inventory.pop() + " breaks."; //making the possibility of your weapon to break
+      text.innerText += " Seu/sua " + inventory.pop() + " quebrou."; //making the possibility of your weapon to break
       currentWeaponIndex--;
     }
   }
@@ -266,7 +266,7 @@ function goStore() {
   function pickEight() {
     pick(8);
   }
-  
+
   function pick(guess) {
   
   }
