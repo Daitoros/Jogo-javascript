@@ -274,7 +274,7 @@ function goStore() {
   }
 
   function pick(guess) {
-  
+    const numbers = [];
   }
 
   function winGame(){
