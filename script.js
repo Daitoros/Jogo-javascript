@@ -64,19 +64,25 @@ const locations = [{ //An object IN an array
   name: "matar monstro",
   "button text": ["Ir para o centro da cidade", "Ir para o centro da cidade", "Ir para o centro da cidade"],
   "button functions": [goTown, goTown, goTown],
-  text: 'O monstro grita "Arg!" enquanto morre.Você ganha pontos de experiência e encontra ouro.' // That's how you put double quotes on a dialogue
+  text: 'O monstro grita "Arg!" enquanto morre. Você ganha pontos de experiência e encontra ouro.' // That's how you put double quotes on a dialogue
 },
 {
   name: "perder",
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
-    text: "You die. &#x2620;"
+    text: "Você morreu. &#x2620;"
 },
 {
   name: "ganhar",
   "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
   "button functions": [restart, restart, restart],
   text: "Você derrotou o dragão! VOCÊ GANHOU O JOGO! &#x1F389;"
+},
+{
+  name: "easter egg",
+  "button text": ["2", "8", "Go to town square?"],
+  "button functions": [pickTwo, pickEight, goTown],
+  text: "Você encontrou um jogo secreto. Escolha um número acima. Dez números serão aleatoriamente escolhidos entre 0 e 10. Se o número que você escolheu bater com um dos números aleatórios, você ganha!"
 }]; 
 /*  Initialize buttons
     One way to access properties in javascript is by dot notation
