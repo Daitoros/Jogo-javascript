@@ -275,6 +275,10 @@ function goStore() {
 
   function pick(guess) {
     const numbers = [];
+    while (numbers.length < 10) {
+      numbers.push(Math.floor(Math.random() * 11));
+    }
+    text.innerText = "Você escolheu "+ guess +". Aqui estão seus números aleatórios:";
   }
 
   function winGame(){
