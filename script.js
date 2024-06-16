@@ -63,7 +63,7 @@ const locations = [{ //An object IN an array
 {
   name: "matar monstro",
   "button text": ["Ir para o centro da cidade", "Ir para o centro da cidade", "Ir para o centro da cidade"],
-  "button functions": [goTown, goTown, goTown],
+  "button functions": [goTown, goTown, easterEgg],
   text: 'O monstro grita "Arg!" enquanto morre. Você ganha pontos de experiência e encontra ouro.' // That's how you put double quotes on a dialogue
 },
 {
@@ -286,6 +286,14 @@ function goStore() {
       text.innerText += "Acertou! Você ganhou 20 de ouro!";
       gold +=20;
       goldText.innerText = gold;
+    }
+    else{
+      text.innerText += "Errou! Você perdeu 10 de vida!";
+      health -= 10;
+      healthText.innerText = health;
+      if(health<=0){
+        lose();
+      }
     }
   }
 
