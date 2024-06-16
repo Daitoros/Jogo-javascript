@@ -278,7 +278,15 @@ function goStore() {
     while (numbers.length < 10) {
       numbers.push(Math.floor(Math.random() * 11));
     }
-    text.innerText = "Você escolheu "+ guess +". Aqui estão seus números aleatórios:";
+    text.innerText = "Você escolheu "+ guess +". Aqui estão seus números aleatórios:\n";
+    for (let i = 0; i < 10; i++) {
+      text.innerText += numbers[i] + "\n";
+    }
+    if (numbers.includes(guess)) {
+      text.innerText += "Acertou! Você ganhou 20 de ouro!";
+      gold +=20;
+      goldText.innerText = gold;
+    }
   }
 
   function winGame(){
